@@ -1,7 +1,10 @@
 const deleteBtn = document.querySelectorAll('.fa-trash')
+//Capture all To do Items
 const item = document.querySelectorAll('.item span')
+//Capture all Completed Items only
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+//Setup Listeners
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
@@ -15,13 +18,14 @@ Array.from(itemCompleted).forEach((element)=>{
 })
 
 async function deleteItem(){
+    //Extract to do name
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'itemFromJS': itemText
+              'itemFromJS': itemText //Data
             })
           })
         const data = await response.json()
@@ -34,13 +38,14 @@ async function deleteItem(){
 }
 
 async function markComplete(){
+    //Extract to do name
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                'itemFromJS': itemText
+                'itemFromJS': itemText //Data
             })
           })
         const data = await response.json()
@@ -53,13 +58,14 @@ async function markComplete(){
 }
 
 async function markUnComplete(){
+    //Extract to do name
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('markUnComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                'itemFromJS': itemText
+                'itemFromJS': itemText //Data
             })
           })
         const data = await response.json()

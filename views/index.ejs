@@ -22,11 +22,13 @@
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- Insert item, classify as 'completed' only If completed -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- Trash can Icon -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
@@ -35,7 +37,7 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Form to Add a new To do item -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
